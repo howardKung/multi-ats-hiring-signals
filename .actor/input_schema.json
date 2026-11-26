@@ -1,0 +1,59 @@
+{
+  "title": "Multi-ATS Hiring & GTM Signals Input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "companies": {
+      "title": "Companies (Domains, Slugs, or Direct ATS URLs)",
+      "type": "array",
+      "description": "List of target companies. Supports domains (e.g. 'stripe.com', 'linear.app'), company slugs (e.g. 'airbnb'), or direct ATS board URLs (e.g. 'https://jobs.ashbyhq.com/linear'). Zero-Charge Protection: you are ONLY charged when at least 1 active job is found.",
+      "editor": "stringList",
+      "prefill": [
+        "stripe.com",
+        "airbnb.com",
+        "figma.com",
+        "linear.app",
+        "notion.so"
+      ],
+      "default": [
+        "stripe.com",
+        "linear.app"
+      ]
+    },
+    "includeJobsList": {
+      "title": "Include Normalized Jobs List",
+      "type": "boolean",
+      "description": "If enabled, includes the standardized array of job postings in each company's output record. Disable for ultra-compact GTM signal payloads (ideal for Clay / n8n webhooks).",
+      "default": true
+    },
+    "maxJobsPerCompany": {
+      "title": "Max Jobs Returned Per Company",
+      "type": "integer",
+      "description": "Maximum number of individual job objects returned in the `jobs` array per company (signals and counts are always computed across ALL open roles).",
+      "minimum": 1,
+      "maximum": 2000,
+      "default": 50
+    },
+    "detectTechStack": {
+      "title": "Detect B2B Tech Stack (60+ Tools)",
+      "type": "boolean",
+      "description": "Scan job titles and descriptions using deterministic rules (0 LLM cost) to identify 60+ B2B SaaS, Cloud, Data, and Engineering tools.",
+      "default": true
+    },
+    "discoverFromWebsite": {
+      "title": "Fallback Website /careers ATS Discovery",
+      "type": "boolean",
+      "description": "When direct ATS slug probing misses, fetch the company's /careers or homepage HTML to discover embedded ATS links automatically.",
+      "default": true
+    },
+    "concurrency": {
+      "title": "Concurrency",
+      "type": "integer",
+      "description": "Number of companies processed concurrently. Higher values finish faster for large batches.",
+      "minimum": 1,
+      "maximum": 20,
+      "default": 5
+    }
+  },
+  "required": ["companies"]
+}

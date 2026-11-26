@@ -1,0 +1,63 @@
+{
+  "actorSpecification": 1,
+  "fields": {},
+  "views": {
+    "overview": {
+      "title": "GTM Hiring Signals Overview",
+      "transformation": {
+        "fields": [
+          "company",
+          "atsProvider",
+          "openRolesCount",
+          "hiringVelocity30d",
+          "departments",
+          "buyingSignals",
+          "detectedTechStack",
+          "status",
+          "charged"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "company": {
+            "label": "Company",
+            "format": "text"
+          },
+          "atsProvider": {
+            "label": "ATS Provider",
+            "format": "text"
+          },
+          "openRolesCount": {
+            "label": "Open Roles",
+            "format": "number"
+          },
+          "hiringVelocity30d": {
+            "label": "New (30d)",
+            "format": "number"
+          },
+          "departments": {
+            "label": "Departments",
+            "format": "object"
+          },
+          "buyingSignals": {
+            "label": "GTM Buying Signals",
+            "format": "object"
+          },
+          "detectedTechStack": {
+            "label": "Detected Tech Stack",
+            "format": "array"
+          },
+          "status": {
+            "label": "Status",
+            "format": "text"
+          },
+          "charged": {
+            "label": "Charged",
+            "format": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

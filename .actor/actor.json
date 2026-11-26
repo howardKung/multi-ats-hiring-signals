@@ -1,0 +1,15 @@
+{
+  "actorSpecification": 1,
+  "name": "multi-ats-hiring-signals",
+  "title": "Multi-ATS Career & GTM Buying Signals Normalizer",
+  "description": "Fast, zero-browser API normalizer for 8 major ATS platforms (Greenhouse, Lever, Ashby, SmartRecruiters, Workable, Recruitee, Breezy HR, Pinpoint). Extracts hiring velocity, GTM buying signals, and 60+ tech stack signals with Zero-Charge Protection.",
+  "version": "1.0",
+  "meta": {
+    "templateId": "js-empty"
+  },
+  "input": "./input_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  },
+  "dockerfile": "../Dockerfile"
+}

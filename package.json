@@ -1,0 +1,37 @@
+{
+  "name": "multi-ats-hiring-signals",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Multi-ATS Career & GTM Buying Signals Normalizer — Extract standardized job openings, hiring velocity, department breakdown, buying signals, and tech stack from 8 major public ATS JSON APIs with zero-charge protection.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "node test/e2e.test.js",
+    "canary": "node test/e2e.test.js --canary"
+  },
+  "dependencies": {
+    "apify": "^3.4.2"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "keywords": [
+    "apify",
+    "ats",
+    "greenhouse",
+    "lever",
+    "ashby",
+    "smartrecruiters",
+    "workable",
+    "recruitee",
+    "breezy",
+    "pinpoint",
+    "gtm",
+    "buying-signals",
+    "hiring-signals",
+    "revops",
+    "clay",
+    "sales-intelligence"
+  ],
+  "license": "MIT"
+}
