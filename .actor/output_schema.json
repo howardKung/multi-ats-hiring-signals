@@ -1,0 +1,14 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "Multi-ATS Hiring & GTM Buying Signals Output",
+  "description": "Normalized company hiring signals, 30-day hiring velocity, department breakdown, and inferred B2B tech stack stored in the default dataset.",
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "string",
+      "title": "Company Hiring & GTM Signals Dataset",
+      "description": "Structured dataset containing one normalized JSON record per input company with ATS provider, open roles count, 30-day velocity, GTM buying signals, and detected tech stack.",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?view=overview"
+    }
+  }
+}
