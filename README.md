@@ -154,3 +154,15 @@ You **only pay** (`company-signal-extracted` event) when the Actor successfully 
   "extractedAt": "2026-11-26T06:50:00.000Z"
 }
 ```
+
+---
+
+## 🔗 Complete Your Clay / n8n Outbound Stack (Zero-PII GTM Trilogy)
+
+Pair **Multi-ATS Hiring Signals** with our companion zero-browser Actors to build a fully automated **"Newly Funded ➔ Actively Hiring ➔ Verified Tech Stack"** outbound waterfall:
+
+1. **💰 Step 1 — Find Newly Funded US Startups**: [**US Startup Funding Signals (SEC Form D, Zero-PII)**](https://apify.com/howardkung/sec-form-d-funding-signals) — Daily SEC EDGAR Form D operating startups (pooled funds excluded).
+2. **👥 Step 2 — Check Hiring Velocity & Department Intent**: **Multi-ATS Career & GTM Buying Signals** *(this Actor)* — Instant open roles, 30-day velocity, and RevOps/AI hiring flags across 8 ATS APIs.
+3. **🛡️ Step 3 — Verify Email Gateway, DNS SaaS & Trust Center**: [**Company DNS, Email-Auth & Tech-Stack Signals**](https://apify.com/howardkung/domain-dns-tech-trust-signals) — Detect Google Workspace vs. Microsoft 365, Proofpoint/Mimecast spam traps, 60+ DNS TXT SaaS verifications, and Vanta/Drata Trust Centers before sending cold emails.
+4. **⚡ Free Ready-to-Import n8n Workflow**: Grab the pre-wired GTM enrichment workflow in [**howardKung/agentguard-kit**](https://github.com/howardKung/agentguard-kit).
+
