@@ -1,0 +1,263 @@
+{
+  "name": "Multi-ATS Hiring & GTM Buying Signals -> Slack / Google Sheets",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Multi-ATS Hiring & GTM Buying Signals Automation\n\nAutomatically detects companies actively hiring Sales, RevOps, AI, or Security roles across 8 ATS APIs (Greenhouse, Lever, Ashby, Workable, SmartRecruiters, Recruitee, Breezy, Pinpoint) with **Zero-Charge Protection**.\n\n**Setup (2 Minutes):**\n1. Set environment variable `APIFY_API_TOKEN` (from Apify Console)\n2. Connect your Slack / Telegram / Google Sheets credentials in the final notification nodes\n3. Customize target domains in the HTTP Request JSON body\n\nActor page: https://apify.com/howardkung/multi-ats-hiring-signals",
+        "height": 280,
+        "width": 440,
+        "color": 4
+      },
+      "id": "note-ats-guide",
+      "name": "Workflow Setup Guide",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -380,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "days",
+              "daysInterval": 1,
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "id": "trigger-ats-daily",
+      "name": "Schedule: Daily 08:00 Scan",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        140,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.apify.com/v2/acts/howardkung~multi-ats-hiring-signals/run-sync-get-dataset-items?token={{ $env.APIFY_API_TOKEN }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"companies\": [\n    \"stripe.com\",\n    \"airbnb.com\",\n    \"figma.com\",\n    \"linear.app\",\n    \"notion.so\"\n  ],\n  \"includeJobsList\": false,\n  \"maxJobsPerCompany\": 50,\n  \"detectTechStack\": true,\n  \"discoverFromWebsite\": true,\n  \"concurrency\": 5\n}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "http-run-ats-actor",
+      "name": "Apify: Multi-ATS Hiring Signals",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        400,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "cond-ats-ok",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "ok",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "cond-ats-velocity",
+              "leftValue": "={{ $json.hiringVelocity30d }}",
+              "rightValue": 3,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            },
+            {
+              "id": "cond-ats-gtm",
+              "leftValue": "={{ Boolean($json.buyingSignals?.isHiringSales || $json.buyingSignals?.isHiringRevOps || $json.buyingSignals?.isHiringAI) }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-ats-high-value",
+      "name": "IF: High-Velocity GTM Hiring",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        660,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SLACK_WEBHOOK_URL || 'https://hooks.slack.com/services/REPLACE/ME/WEBHOOK' }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"text\": \":rocket: *High-Intent Hiring Surge:* \" + $json.company + \" (`\" + $json.atsProvider + \"`)\\n• Open Roles: \" + $json.openRolesCount + \" (30d New: \" + $json.hiringVelocity30d + \")\\n• Sales Roles: \" + ($json.buyingSignals?.salesRolesCount || 0) + \" | RevOps: \" + ($json.buyingSignals?.revOpsRolesCount || 0) + \" | AI: \" + ($json.buyingSignals?.aiRolesCount || 0) + \"\\n• Board: \" + $json.boardUrl\n}",
+        "options": {
+          "ignoreResponseCode": true,
+          "timeout": 10000
+        }
+      },
+      "id": "slack-notify-ats",
+      "name": "Notify Slack: Hot GTM Account",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        940,
+        20
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $env.GOOGLE_SHEET_ID || 'REPLACE_WITH_GOOGLE_SHEET_ID' }}"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "HiringSignals"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "company": "={{ $json.company }}",
+            "atsProvider": "={{ $json.atsProvider }}",
+            "openRolesCount": "={{ $json.openRolesCount }}",
+            "hiringVelocity30d": "={{ $json.hiringVelocity30d }}",
+            "boardUrl": "={{ $json.boardUrl }}",
+            "extractedAt": "={{ $json.extractedAt }}"
+          }
+        },
+        "options": {}
+      },
+      "id": "sheets-log-ats",
+      "name": "Google Sheets: Log Qualified Leads",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        940,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "noop-ats-skip",
+      "name": "Skip Low-Velocity Company",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        940,
+        360
+      ]
+    }
+  ],
+  "connections": {
+    "Schedule: Daily 08:00 Scan": {
+      "main": [
+        [
+          {
+            "node": "Apify: Multi-ATS Hiring Signals",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Apify: Multi-ATS Hiring Signals": {
+      "main": [
+        [
+          {
+            "node": "IF: High-Velocity GTM Hiring",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF: High-Velocity GTM Hiring": {
+      "main": [
+        [
+          {
+            "node": "Notify Slack: Hot GTM Account",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Google Sheets: Log Qualified Leads",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Skip Low-Velocity Company",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": [
+    {
+      "name": "Apify"
+    },
+    {
+      "name": "B2B GTM"
+    },
+    {
+      "name": "ATS Hiring Signals"
+    }
+  ]
+}
