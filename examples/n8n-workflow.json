@@ -3,7 +3,7 @@
   "nodes": [
     {
       "parameters": {
-        "content": "## Multi-ATS Hiring & GTM Buying Signals Automation\n\nAutomatically detects companies actively hiring Sales, RevOps, AI, or Security roles across 8 ATS APIs (Greenhouse, Lever, Ashby, Workable, SmartRecruiters, Recruitee, Breezy, Pinpoint) with **Zero-Charge Protection**.\n\n**Setup (2 Minutes):**\n1. Set environment variable `APIFY_API_TOKEN` (from Apify Console)\n2. Connect your Slack / Telegram / Google Sheets credentials in the final notification nodes\n3. Customize target domains in the HTTP Request JSON body\n\nActor page: https://apify.com/howardkung/multi-ats-hiring-signals",
+        "content": "## Multi-ATS Hiring & GTM Buying Signals Automation\n\nAutomatically detects companies actively hiring Sales, RevOps, AI, or Security roles across 8 ATS APIs (Greenhouse, Lever, Ashby, Workable, SmartRecruiters, Recruitee, Breezy, Pinpoint) with **Zero-Charge Protection**.\n\n**Setup (2 Minutes):**\n1. Set environment variable `APIFY_API_TOKEN` (from Apify Console)\n2. Connect your Slack / Telegram / Google Sheets credentials in the final notification nodes\n3. Customize target domains in the HTTP Request JSON body\n\nActor page: https://apify.com/howardkung/multi-ats-hiring-signals-api-zero-pii",
         "height": 280,
         "width": 440,
         "color": 4
@@ -41,7 +41,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://api.apify.com/v2/acts/howardkung~multi-ats-hiring-signals/run-sync-get-dataset-items?token={{ $env.APIFY_API_TOKEN }}",
+        "url": "=https://api.apify.com/v2/acts/howardkung~multi-ats-hiring-signals-api-zero-pii/run-sync-get-dataset-items?token={{ $env.APIFY_API_TOKEN }}",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [

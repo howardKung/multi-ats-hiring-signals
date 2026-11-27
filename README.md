@@ -163,7 +163,7 @@ Pair **Multi-ATS Hiring Signals** with our companion zero-browser Actors to buil
 
 1. **💰 Step 1 — Find Newly Funded US Startups**: [**US Startup Funding Signals (SEC Form D, Zero-PII)**](https://apify.com/howardkung/sec-form-d-funding-signals) — Daily SEC EDGAR Form D operating startups (pooled funds excluded).
 2. **👥 Step 2 — Check Hiring Velocity & Department Intent**: **Multi-ATS Career & GTM Buying Signals** *(this Actor)* — Instant open roles, 30-day velocity, and RevOps/AI hiring flags across 8 ATS APIs.
-3. **🛡️ Step 3 — Verify Email Gateway, DNS SaaS & Trust Center**: [**Company DNS, Email-Auth & Tech-Stack Signals**](https://apify.com/howardkung/domain-dns-tech-trust-signals) — Detect Google Workspace vs. Microsoft 365, Proofpoint/Mimecast spam traps, 60+ DNS TXT SaaS verifications, and Vanta/Drata Trust Centers before sending cold emails.
+3. **🛡️ Step 3 — Verify Email Gateway, DNS SaaS & Trust Center**: [**Company DNS, Email-Auth & Tech-Stack Signals**](https://apify.com/howardkung/company-dns-email-auth-tech-stack-signals-zero-pii) — Detect Google Workspace vs. Microsoft 365, Proofpoint/Mimecast spam traps, 60+ DNS TXT SaaS verifications, and Vanta/Drata Trust Centers before sending cold emails.
 4. **⚡ Free Ready-to-Import n8n Workflow**: Grab the pre-wired GTM enrichment workflow in [**howardKung/agentguard-kit**](https://github.com/howardKung/agentguard-kit).
 
 ---
@@ -180,11 +180,11 @@ Automate daily hiring-velocity alerts without writing glue code:
 
 | Signal Engine | Best Used For | Apify Store | Ready n8n JSON |
 | :--- | :--- | :--- | :--- |
-| **Multi-ATS Hiring Signals** *(This Actor)* | Open roles, 30d velocity & GTM buying signals across 8 ATS APIs | [Apify](https://apify.com/howardkung/multi-ats-hiring-signals) | [`examples/n8n-workflow.json`](./examples/n8n-workflow.json) |
-| **DNS, Email-Auth & Tech Stack** | MX/SPF/DMARC cold-email safety, Proofpoint/Mimecast & 85+ DNS tools | [Apify](https://apify.com/howardkung/domain-dns-tech-trust-signals) | [GitHub](https://github.com/howardKung/domain-dns-tech-trust-signals/blob/main/examples/n8n-workflow.json) |
+| **Multi-ATS Hiring Signals** *(This Actor)* | Open roles, 30d velocity & GTM buying signals across 8 ATS APIs | [Apify](https://apify.com/howardkung/multi-ats-hiring-signals-api-zero-pii) | [`examples/n8n-workflow.json`](./examples/n8n-workflow.json) |
+| **DNS, Email-Auth & Tech Stack** | MX/SPF/DMARC cold-email safety, Proofpoint/Mimecast & 85+ DNS tools | [Apify](https://apify.com/howardkung/company-dns-email-auth-tech-stack-signals-zero-pii) | [GitHub](https://github.com/howardKung/domain-dns-tech-trust-signals/blob/main/examples/n8n-workflow.json) |
 | **US Startup Funding (SEC Form D)** | Newly funded US operating startups (pooled funds filtered out) | [Apify](https://apify.com/howardkung/sec-form-d-funding-signals) | [GitHub](https://github.com/howardKung/sec-form-d-funding-signals/blob/main/examples/n8n-workflow.json) |
-| **Shopify & WooCommerce Store Intel** | DTC platform, 30+ paid apps (Klaviyo, Recharge, Yotpo) & pricing | [Apify](https://apify.com/howardkung/ecommerce-store-app-intel) | [GitHub](https://github.com/howardKung/ecommerce-store-app-intel/blob/main/examples/n8n-workflow.json) |
-| **SEC Form 4 Insider Cluster Buys** | Open-market C-suite stock purchases (`Code P` only) & cluster alerts | [Apify](https://apify.com/howardkung/sec-form4-insider-cluster-buys) | [GitHub](https://github.com/howardKung/sec-form4-insider-cluster-buys/blob/main/examples/n8n-workflow.json) |
+| **Shopify & WooCommerce Store Intel** | DTC platform, 30+ paid apps (Klaviyo, Recharge, Yotpo) & pricing | [Apify](https://apify.com/howardkung/ecommerce-store-app-intel-api-zero-pii) | [GitHub](https://github.com/howardKung/ecommerce-store-app-intel/blob/main/examples/n8n-workflow.json) |
+| **SEC Form 4 Insider Cluster Buys** | Open-market C-suite stock purchases (`Code P` only) & cluster alerts | [Apify](https://apify.com/howardkung/sec-form4-insider-cluster-buys-api-zero-pii) | [GitHub](https://github.com/howardKung/sec-form4-insider-cluster-buys/blob/main/examples/n8n-workflow.json) |
 
 ---
 
